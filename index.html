@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldCore | Shavne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #1a1a1a;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #2c2c2c;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 30px;
+            text-align: center;
+            margin: 40px auto;
+            border: 5px solid #FF8C00;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6);
+            max-width: 900px;
+        }
+
+        .warning-box h2 {
+            font-size: 2em;
+            color: #1a1a1a;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .warning-box p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-top: 15px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #FFD700;
+            text-align: center;
+            margin: 50px 0 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .video-card {
+            background: #2c2c2c;
+            border: 4px solid #FFD700;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: #FFA500;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-info {
+            padding: 20px;
+            background: #2c2c2c;
+        }
+
+        .video-title {
+            font-size: 1.3em;
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .video-desc {
+            font-size: 1em;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .server-info {
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+            border: 4px solid #FFD700;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .server-info h3 {
+            font-size: 2em;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .server-ip {
+            background: #FFD700;
+            color: #1a1a1a;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            border: 3px solid #FF8C00;
+        }
+
+        .about-section {
+            background: #2c2c2c;
+            border: 4px solid #FFD700;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .about-section h2 {
+            font-size: 2.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .about-text {
+            font-size: 1.2em;
+            color: #ccc;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .skills-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1a1a1a;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: 3px solid #FF8C00;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            background: #1a1a1a;
+            color: #FFD700;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: 3px solid #FF8C00;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            background: #2c2c2c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ GOLDCORE ⚡</h1>
+    </div>
+
+    <div class="container">
+        <div class="warning-box">
+            <h2>⚠️ DESCRIPCIÓN ⚠️</h2>
+            <p>Si sales aquí es porque fuiste dropeado por GoldCore</p>
+        </div>
+
+        <div class="about-section">
+            <h2>SOBRE MÍ</h2>
+            <p class="about-text">
+                "99 problemas y un bug los causó todos. Full-stack developer & eterno aprendiz."
+                <br><br>
+                Desarrollador apasionado por JavaScript y Python. Creador de contenido y proyectos únicos.
+                Cada línea de código es una oportunidad para crear algo épico.
+            </p>
+            <div class="skills-container">
+                <span class="skill-badge">JAVASCRIPT</span>
+                <span class="skill-badge">PYTHON</span>
+                <span class="skill-badge">FULL-STACK</span>
+                <span class="skill-badge">CONTENT CREATOR</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">🎬 VIDEOS</h2>
+        
+        <div class="videos-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Video Destacado #1</h3>
+                    <p class="video-desc">Descripción del video aquí</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Video Destacado #2</h3>
+                    <p class="video-desc">Descripción del video aquí</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Video Destacado #3</h3>
+                    <p class="video-desc">Descripción del video aquí</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Video Destacado #4</h3>
+                    <p class="video-desc">Descripción del video aquí</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="server-info">
+            <h3>🎮 SERVIDOR DE MINECRAFT</h3>
+            <p style="color: #ccc; font-size: 1.2em; margin: 20px 0;">Únete a la comunidad GoldCore</p>
+            <div class="server-ip">tu-servidor.minecraft.com</div>
+            <p style="color: #aaa; margin-top: 20px;">Versión: 1.20+ | Modo: Survival/Creative</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2 style="color: #1a1a1a; font-size: 2em; margin-bottom: 20px;">SÍGUEME EN MIS REDES</h2>
+        <div class="social-links">
+            <a href="https://github.com/tuusuario" class="social-btn" target="_blank">🔗 GITHUB</a>
+            <a href="https://youtube.com/@tucanal" class="social-btn" target="_blank">📺 YOUTUBE</a>
+            <a href="https://discord.gg/tuserver" class="social-btn" target="_blank">💬 DISCORD</a>
+            <a href="mailto:tu@email.com" class="social-btn">✉️ CONTACTO</a>
+        </div>
+        <p style="color: #1a1a1a; margin-top: 30px; font-weight: 600;">© 2024 GoldCore - Shavne | Todos los derechos reservados</p>
+    </div>
+</body>
+</html>
